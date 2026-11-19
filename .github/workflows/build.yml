@@ -23,8 +23,10 @@ jobs:
       SOLUTION_FILE_PATH: src/Shell.sln
       BUILD_CONFIGURATION: ${{matrix.configuration}}
       BUILD_PLATFORM: ${{matrix.platform}}
-      BIN_PATH: D:\a\Shell\Shell\src\bin
-    runs-on: windows-latest
+      BIN_PATH: ${{github.workspace}}\src\bin
+    # windows-2022 ships the VS2022 (v143) toolset for x86/x64/ARM64.
+    # windows-latest now maps to a VS2026 image without the v143 ARM64 tools.
+    runs-on: windows-2022
 
     steps:
     - uses: actions/checkout@v4
